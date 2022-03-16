@@ -1,82 +1,100 @@
-# import random
+# import packages
 
 import random
+import operator
+import matplotlib
+import matplotlib.pyplot
 
-# make y0 and x0 random integer between 0 and 100
+# make agent list
 
-y0 = random.randint(0,99)
-x0 = random.randint(0,99)
+agents = []
+
+# make random integers and append to agents list
+
+agents.append([random.randint(0,99),random.randint(0,99)])
 
 # move y0 randomly
 
 if random.random() < 0.5:
-    y0 += 1
+    agents[0][0] += 1
 else:
-    y0 -= 1
+    agents[0][0] -= 1
 
 # move x0 randomly
 
 if random.random() < 0.5:
-    x0 += 1
+    agents[0][1] += 1
 else:
-    x0 -= 1
+    agents[0][1] -= 1
 
 # move y0 randomly again
 
 if random.random() < 0.5:
-    y0 += 1
+    agents[0][0] += 1
 else:
-    y0 -= 1
+    agents[0][0] -= 1
 
 # move x0 randomly again
 
 if random.random() < 0.5:
-    x0 += 1
+    agents[0][1] += 1
 else:
-    x0 -= 1
+    agents[0][1] -= 1
 
-# make y1 and x1 random integer between 0 and 100
+# make random integers and append to agents list
 
-y1 = random.randint(0,99)
-x1 = random.randint(0,99)
+agents.append([random.randint(0,99),random.randint(0,99)])
 
 # move y1 randomly
 
 if random.random() < 0.5:
-    y1 += 1
+    agents[1][0] += 1
 else:
-    y1 -= 1
+    agents[1][0] -= 1
 
 # move x1 randomly
 
 if random.random() < 0.5:
-    x1 += 1
+    agents[1][1] += 1
 else:
-    x1 -= 1
+    agents[1][1] -= 1
 
 # move y1 randomly again
 
 if random.random() < 0.5:
-    y1 += 1
+    agents[1][0] += 1
 else:
-    y1 -= 1
+    agents[1][0] -= 1
 
 # move x1 randomly again
 
 if random.random() < 0.5:
-    x1 += 1
+    agents[1][1] += 1
 else:
-    x1 -= 1
+    agents[1][1] -= 1
+
+# print agents]
+
+print(agents)
 
 # calculate distance between points
 
-y_diff = (y0 - y1)
+y_diff = (agents[0][0] - agents[1][0])
 y_diffsq = y_diff * y_diff
 
-x_diff = (x0 - x1)
+x_diff = (agents[0][1] - agents[1][1])
 x_diffsq = x_diff * x_diff
 
 sum = y_diffsq + x_diffsq
 
 answer = sum**0.5
+
 print(answer)
+
+print(max(agents, key=operator.itemgetter(1)))
+
+matplotlib.pyplot.ylim(0, 99)
+matplotlib.pyplot.xlim(0, 99)
+matplotlib.pyplot.scatter(agents[0][1],agents[0][0], color='red')
+matplotlib.pyplot.scatter(agents[1][1],agents[1][0], color='red')
+matplotlib.pyplot.show()
