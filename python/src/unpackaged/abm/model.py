@@ -1,7 +1,22 @@
 import random
 import operator
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 import agentframework
+import csv
+
+f = open("in.txt")
+
+environment = []
+
+for row in f:
+    rowlist = []
+    for value in row:
+        rowlist.append(value)
+    environment.append(rowlist)
+f.close()
+
+plt.imshow(environment)
+plt.show()
 
 def distance_between(agents_row_a, agents_row_b):
     return (((agents_row_a.x - agents_row_b.x)**2) +
@@ -21,11 +36,11 @@ for j in range(num_of_iterations):
         agents[i].move()
 
 
-matplotlib.pyplot.xlim(0, 99)
-matplotlib.pyplot.ylim(0, 99)
+plt.xlim(0, 99)
+plt.ylim(0, 99)
 for i in range(num_of_agents):
-    matplotlib.pyplot.scatter(agents[i].x, agents[i].y)
-matplotlib.pyplot.show()
+    plt.scatter(agents[i].x, agents[i].y)
+plt.show()
 
 for agents_row_a in agents:
     for agents_row_b in agents:
