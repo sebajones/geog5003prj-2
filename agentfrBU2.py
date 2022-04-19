@@ -2,15 +2,9 @@ import random
 
 class Agent():
     # make agents
-    def __init__(self, environment, agents, y = None, x = None):
-        if (x == None):
-            self.x = random.randint(0,100)
-        else:
-            self.x = x
-        if (y == None):
-            self.y = random.randint(0,100)
-        else:
-            self.y = y
+    def __init__(self, environment, agents):
+        self.x = random.randint(0,99)
+        self.y = random.randint(0,99)
         self.environment = environment
         self.store = 0
         self.agents = agents
