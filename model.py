@@ -1,11 +1,11 @@
 import random
 import operator
 import matplotlib
-matplotlib.use('macosx')
 import matplotlib.pyplot
 import matplotlib.animation
 import agentframework
 import csv
+import tkinter
 
 environment = []
 
@@ -43,7 +43,7 @@ def update(frame_number):
             agents[i].eat()
             agents[i].share_with_neighbours(neighbourhood)
 
-    #if random.random() < 0.1:
+    #while random.random < 0.1:
     #    carry_on = False
     #    print("stopping condition")
 
@@ -60,7 +60,20 @@ def gen_function(b = [0]):
         yield a			# Returns control and waits next call.
         a = a + 1
 
-animation = matplotlib.animation.FuncAnimation(fig, update,
-frames=gen_function, repeat=True)
+def run():
+    animation = matplotlib.animation.FuncAnimation(fig, update,
+    frames=gen_function, repeat=True)
+    canvas.draw()
 
-matplotlib.pyplot.show()
+root = tkinter.Tk()
+root.wm_title("Model")
+canvas = matplotlib.backends.backend_tkagg.FigureCanvasTkAgg(fig, master=root)
+canvas._tkcanvas.pack(side=tkinter.TOP, fill=tkinter.BOTH, expand=1)
+menu_bar = tkinter.Menu(root)
+root.config(menu=menu_bar)
+model_menu = tkinter.Menu(menu_bar)
+menu_bar.add_cascade(label="Model", menu=model_menu)
+model_menu.add_command(label="Run model", command=run)
+
+
+root.mainloop()

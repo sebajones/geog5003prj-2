@@ -5,7 +5,6 @@ matplotlib.use('macosx')
 import matplotlib.pyplot
 import matplotlib.animation
 import agentframework
-import tkinter
 import csv
 
 environment = []
@@ -44,9 +43,9 @@ def update(frame_number):
             agents[i].eat()
             agents[i].share_with_neighbours(neighbourhood)
 
-    if random.random() < 0.1:
-        carry_on = False
-        print("stopping condition")
+    #if random.random() < 0.1:
+    #    carry_on = False
+    #    print("stopping condition")
 
     matplotlib.pyplot.xlim(0, 99)
     matplotlib.pyplot.ylim(0, 99)
@@ -56,17 +55,12 @@ def update(frame_number):
 
 def gen_function(b = [0]):
     a = 0
-    global carry_on
-    while (a < 10) & (carry_on) :
+    global carry_on #Not actually needed as we're not assigning, but clearer
+    while (a < 20) & (carry_on) :
         yield a			# Returns control and waits next call.
         a = a + 1
 
-def run():
-    animation = matplotlib.animation.FuncAnimation(fig, update,
-    frames=gen_function, repeat=False)
-    canvas.draw()
+animation = matplotlib.animation.FuncAnimation(fig, update,
+frames=gen_function, repeat=True)
 
-# main window
-root = tkinter.Tk()
-
-root.mainloop()
+matplotlib.pyplot.show()
